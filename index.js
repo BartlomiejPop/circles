@@ -46,9 +46,11 @@ const gameOver = (record) => {
 	scorePoints = 0;
 	scoreEl.innerText = scorePoints;
 	clearInterval(bgInterval);
-	if (record > localStorage.getItem("points")) {
-		localStorage.setItem("NewRecord", record);
-	}
+	// if (record > +localStorage.getItem("NewRecord")) {
+	// 	localStorage.setItem("NewRecord", record);
+	// }
+	// localStorage.setItem("points", record);
+	
 	// localStorage.setItem("points", record);
 
 	recordEl.textContent = ` record: ${localStorage.getItem("NewRecord")}`;
