@@ -18,23 +18,29 @@
 	</head>
 	<body>
 		<div class="container">
-			<div class="circle"><span class="score">0</span></div>
+			<div class="circle">
+				<span class="score" aria-readonly="true">0</span>
+			</div>
 		</div>
-		<div class="timer-bg">1s</div>
+		<div class="timer-bg" aria-readonly="true">1s</div>
 		<div class="game-over">
-			<span class="final-score"></span>
+			<span class="final-score">CIRCLES</span>
+			<span class="record">click the circles!</span>
 			<button class="play-again">Play</button>
 			<div class="audio-interface">
-				<button class="pause-resume"><i class="fa-solid fa-play"></i></button>
-				 <input class="volume" type="range" min="0" max="100" />
+				<button class="pause-resume"><i class="fa-solid fa-pause"></i></button>
+				<input class="volume" type="range" min="0" max="100" />
 			</div>
 		</div>
 		<audio
 			id="audio"
-			src="lost_my_name.mp3"
+			src="audio/lost_my_name.mp3"
 			controls
 			loop
+			autoplay
 			preload="auto"></audio>
+		<audio id="click" src="audio/click.mp3"></audio>
+		<audio id="bonus" src="audio/bonus.mp3"></audio>
 		<script src="index.js"></script>
 	</body>
 </html>
