@@ -50,10 +50,10 @@ const gameOver = (record) => {
 	// 	localStorage.setItem("NewRecord", record);
 	// }
 	// localStorage.setItem("points", record);
-	
+
 	// localStorage.setItem("points", record);
 
-	recordEl.textContent = ` record: ${localStorage.getItem("NewRecord")}`;
+	// recordEl.textContent = ` record: ${localStorage.getItem("NewRecord")}`;
 };
 
 const handleCircleClick = () => {
@@ -70,8 +70,6 @@ const handleCircleClick = () => {
 		circleEl.style.border = " 8px dotted rgb(255, 255, 255)";
 	} else if (scorePoints >= 300) {
 		circleEl.style.border = " 8px dashed rgb(255, 255, 255)";
-	} else {
-		circleEl.style.border = " 8px solid rgb(255, 255, 255)";
 	}
 };
 
@@ -121,6 +119,7 @@ playAgainBtn.addEventListener("click", () => {
 		generateCircle(timer);
 	}, 500);
 	bgInterval = setInterval(updateTimerBg, 1000);
+	circleEl.style.border = " 8px solid rgb(255, 255, 255)";
 });
 
 playMusicBtn.addEventListener("click", () => {
