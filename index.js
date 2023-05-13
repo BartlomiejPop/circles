@@ -102,7 +102,7 @@ const updateTimerBg = () => {
 circleEl.addEventListener("click", () => {
 	handleCircleClick();
 	const RNGvalue = Math.random(1);
-	if (RNGvalue < 0.04) {
+	if (RNGvalue < 0.05) {
 		generateEvent();
 	}
 });
