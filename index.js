@@ -12,6 +12,8 @@ const musicEl = document.getElementById("audio");
 const clickSound = document.getElementById("click");
 const bonusSound = document.getElementById("bonus");
 const recordEl = document.querySelector(".record");
+const lightmodeEl = document.querySelector(".lightmode");
+const darkmodeEl = document.querySelector(".darkmode");
 let scorePoints = 0;
 let timeOut;
 let timer;
@@ -29,9 +31,13 @@ function getRandomHexColor() {
 const generateCircle = (timer) => {
 	circleEl.style.display = "flex";
 	circleEl.style.top =
-		150 + Math.random(window.innerHeight) * 0.6 * window.innerHeight + "px";
+		window.innerHeight * 0.05 +
+		Math.random(window.innerHeight) * 0.7 * window.innerHeight +
+		"px";
 	circleEl.style.left =
-		150 + Math.random(window.innerWidth) * 0.6 * window.innerWidth + "px";
+		window.innerWidth * 0.05 +
+		Math.random(window.innerWidth) * 0.7 * window.innerWidth +
+		"px";
 	circleEl.style.backgroundColor = getRandomHexColor();
 	timeOut = setTimeout(() => {
 		gameOver(scorePoints);
@@ -46,14 +52,13 @@ const gameOver = (record) => {
 	scorePoints = 0;
 	scoreEl.innerText = scorePoints;
 	clearInterval(bgInterval);
-	// if (record > +localStorage.getItem("NewRecord")) {
-	// 	localStorage.setItem("NewRecord", record);
-	// }
-	// localStorage.setItem("points", record);
-
-	// localStorage.setItem("points", record);
-
-	// recordEl.textContent = ` record: ${localStorage.getItem("NewRecord")}`;
+	if (localStorage.getItem("NewRecord") == 0) {
+		localStorage.setItem("NewRecord", record);
+	}
+	if (localStorage.getItem("NewRecord") < record) {
+		localStorage.setItem("NewRecord", record);
+	}
+	recordEl.textContent = ` record: ${localStorage.getItem("NewRecord")}`;
 };
 
 const handleCircleClick = () => {
@@ -65,9 +70,9 @@ const handleCircleClick = () => {
 	generateCircle(timer);
 	scoreEl.innerText = scorePoints;
 	if (scorePoints >= 100 && scorePoints < 200) {
-		circleEl.style.border = " 8px double rgb(255, 255, 255)";
+		circleEl.style.border = " 10px double rgb(255, 255, 255)";
 	} else if (scorePoints >= 200 && scorePoints < 300) {
-		circleEl.style.border = " 8px dotted rgb(255, 255, 255)";
+		circleEl.style.border = " 10px dotted rgb(255, 255, 255)";
 	} else if (scorePoints >= 300) {
 		circleEl.style.border = " 8px dashed rgb(255, 255, 255)";
 	}
@@ -86,7 +91,7 @@ const generateEvent = () => {
 	setTimeout(() => {
 		circleEvent.style.display = "none";
 	}, 1200);
-	circleEvent.addEventListener("click", () => {
+	circleEvent.addEventListener("mousedown", () => {
 		timer += 100;
 		timerBgEl.textContent = timer + +bonusTime + "ms";
 		bonusSound.play();
@@ -99,7 +104,43 @@ const updateTimerBg = () => {
 	timerBgEl.textContent = timer + "ms";
 };
 
-circleEl.addEventListener("click", () => {
+const setDarkMode = () => {
+	playAgainBtn.style.backgroundColor = " rgb(255, 255, 255, 0.2)";
+	playAgainBtn.style.color = " rgb(255, 255, 255, 0.5)";
+	document.querySelector("body").style.backgroundImage = "url(darkModeBg.jpg)";
+	document.querySelector("body").style.backgroundSize = "37px";
+	document.querySelector("body").style.animation =
+		"bg-scrolling 0.4s infinite linear";
+	timerBgEl.style.color = "rgb(150, 150, 150,0.35)";
+	playMusicBtn.style.backgroundColor = "rgb(255, 255, 255, 0.2)";
+	playMusicBtn.style.color = " rgb(255, 255, 255, 0.5)";
+	localStorage.setItem("mode", "dark");
+	circleEl.style.boxShadow = "9px 9px 44px 16px rgb(128, 129, 141)";
+};
+
+const setLightMode = () => {
+	document.querySelector("body").style.background = "";
+	playAgainBtn.style.backgroundColor = " rgb(119, 119, 119, 0.15)";
+	timerBgEl.style.color = "rgb(154, 154, 154, 0.1)";
+	document.querySelector("body").style.backgroundSize = "";
+	document.querySelector("body").style.animation =
+		"bg-scrolling 0.32s infinite linear";
+	playMusicBtn.style.backgroundColor = " rgba(66, 68, 90, 0.1)";
+	playAgainBtn.style.color = " rgb(119, 119, 119)";
+	playMusicBtn.style.color = " rgb(119, 119, 119)";
+	localStorage.setItem("mode", "light");
+	circleEl.style.boxShadow = "9px 9px 44px 16px rgb(128, 129, 141)";
+};
+
+const setColorMode = () => {
+	if (localStorage.getItem("mode") === "dark") {
+		setDarkMode();
+	} else {
+		setLightMode();
+	}
+};
+
+circleEl.addEventListener("mousedown", () => {
 	handleCircleClick();
 	const RNGvalue = Math.random(1);
 	if (RNGvalue < 0.05) {
@@ -122,7 +163,7 @@ playAgainBtn.addEventListener("click", () => {
 	circleEl.style.border = " 8px solid rgb(255, 255, 255)";
 });
 
-playMusicBtn.addEventListener("click", () => {
+playMusicBtn.addEventListener("mousedown", () => {
 	if (playMusicBtn.innerHTML == `<i class="fa-solid fa-play"></i>`) {
 		musicEl.play();
 		musicEl.volume = musicVolume.value / 100;
@@ -137,10 +178,11 @@ musicVolume.addEventListener("input", () => {
 	musicEl.volume = musicVolume.value / 100;
 });
 
-// window.addEventListener("keydown", (e) => {
-// 	console.log(e.target);
-// });
-// circleEl.addEventListener("click", handleCircleClick);
-// events.forEach((el) => circleEl.addEventListener(el, handleCircleClick));
+darkmodeEl.addEventListener("mousedown", setDarkMode);
+lightmodeEl.addEventListener("mousedown", setLightMode);
 
-// timerBgEl.ariaReadOnly = "true";
+setColorMode();
+
+// window.addEventListener("mousedown", (e) => {
+// 	console.log(e);
+// });
