@@ -1,4 +1,5 @@
 console.log("circles");
+
 const containerEl = document.querySelector(".container");
 const circleEl = document.querySelector(".circle");
 const scoreEl = document.querySelector(".score");
@@ -143,7 +144,7 @@ const setColorMode = () => {
 circleEl.addEventListener("mousedown", () => {
 	handleCircleClick();
 	const RNGvalue = Math.random(1);
-	if (RNGvalue < 0.05) {
+	if (RNGvalue < 0.04) {
 		generateEvent();
 	}
 });
