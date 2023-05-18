@@ -122,7 +122,7 @@ const setDarkMode = () => {
 const setLightMode = () => {
 	document.querySelector("body").style.background = "";
 	playAgainBtn.style.backgroundColor = " rgb(119, 119, 119, 0.15)";
-	timerBgEl.style.color = "rgb(154, 154, 154, 0.2)";
+	timerBgEl.style.color = "rgb(154, 154, 154, 0.3)";
 	document.querySelector("body").style.backgroundSize = "";
 	document.querySelector("body").style.animation =
 		"bg-scrolling 0.32s infinite linear";
