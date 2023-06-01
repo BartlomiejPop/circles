@@ -108,7 +108,8 @@ const updateTimerBg = () => {
 const setDarkMode = () => {
 	playAgainBtn.style.backgroundColor = " rgb(255, 255, 255, 0.2)";
 	playAgainBtn.style.color = " rgb(255, 255, 255, 0.5)";
-	document.querySelector("body").style.backgroundImage = "url(darkModeBg.jpg)";
+	document.querySelector("body").style.backgroundImage =
+		"url(images/darkModeBg.jpg)";
 	document.querySelector("body").style.backgroundSize = "37px";
 	document.querySelector("body").style.animation =
 		"bg-scrolling 0.4s infinite linear";

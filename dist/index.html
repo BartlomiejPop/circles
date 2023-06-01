@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="/index.4d663569.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+		<link href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap" rel="stylesheet">
+		<title>Document</title>
+		<script src="https://kit.fontawesome.com/8a4634c38a.js" crossorigin="anonymous" defer=""></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="figure"></div>
+			<div class="circle">
+				<span class="score">0</span>
+			</div>
+		</div>
+		<div class="timer-bg" aria-readonly="true">1s</div>
+		<div class="game-over">
+			<span class="final-score">CIRCLES</span>
+			<span class="record">click the circles! </span>
+			<span class="record">Timer in the background indicates time for clicking the next circle! </span>
+			<button class="play-again">Play</button>
+			<div class="audio-interface">
+				<button class="pause-resume"><i class="fa-solid fa-play"></i></button>
+				<input class="volume" type="range" min="0" max="100">
+			</div>
+			<div class="color-mode">
+				<button class="lightmode"></button>
+				<button class="darkmode"></button>
+			</div>
+		</div>
+		<audio id="audio" src="/lost_my_name.1888727a.mp3" controls="" loop="" preload="auto"></audio>
+		<audio id="click" src="/click.a08e711b.mp3"></audio>
+		<audio id="bonus" src="/bonus.fa40863e.mp3"></audio>
+		<script src="/index.975ef6c8.js" defer=""></script>
+	</body>
+</html>
